@@ -5,8 +5,8 @@ update_led_strip = _.debounce(
             type: 'PUT',
         })
     },
-    500,
-    options = {leading: true, maxWait: 500}
+    50,
+    options = {leading: true, maxWait: 50}
 )
 
 
@@ -21,11 +21,12 @@ window.onload = function(){
                 slidervalue.text(slider.val());
                 update_led_strip(slider, slidertype);
             })
-
-            $.get(`/slider/${slidertype}`, function(data){
+            let updateSliderValue = () => $.get(`/slider/${slidertype}`, function(data){
                 slider.val(data);
                 slider.trigger("input");
             });
+            updateSliderValue();
+            setInterval(updateSliderValue, 500)
         }
     )
 }
