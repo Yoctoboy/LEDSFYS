@@ -7,7 +7,7 @@ from screens.serial_driver_screen import SerialDriverScreen
 
 
 nLeds = 300
-screen = SDLColorScreen(nLeds)
+screen = SerialDriverScreen(nLeds)
 color_state = dict(red=0, green=0, blue=0, brightness=0)
 
 
@@ -39,4 +39,4 @@ def nothing():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host="0.0.0.0", port=8000)
