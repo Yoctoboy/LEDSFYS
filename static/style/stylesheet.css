@@ -1,0 +1,52 @@
+body {
+    background-color: black;
+}
+
+h2 {
+    color: white;
+}
+
+.slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 90%;
+    height: 65px; /* Specified height */
+    background: #eeeeee;
+    opacity: 0.85; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .25s;
+    transition: opacity .25s;
+}
+
+#red .slider {
+    background-image: linear-gradient(to right, #550000, #ff0000);
+}
+
+#green .slider {
+    background-image: linear-gradient(to right, #005500, #00ff00);
+}
+
+#blue .slider {
+    background-image: linear-gradient(to right, #000055, #0000ff);
+}
+
+#brightness .slider {
+    background-image: linear-gradient(to right, #444444, #dddddd);
+}
+
+
+.slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+}
+
+.slider::-moz-range-thumb {
+    width: 50px; /* Set a specific slider handle width */
+    height: 50px; /* Slider handle height */
+    cursor: pointer; /* Cursor on hover */
+    background: rgba(255, 255, 255, 0.315);
+    /* opacity: 0.6; */
+    border: solid white 4px;
+}
+
+.slidervalue {
+    color: white;
+}

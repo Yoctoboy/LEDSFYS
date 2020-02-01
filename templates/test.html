@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            function outputUpdate(age) {
+                document.querySelector('#selected-blue').value = age;
+            }
+        </script>
+    </head>
+    <body>
+        <form action="{{ url_for('handle_data') }}" method="post">
+            <p>
+                {{ colorform.red.label }}:
+                {{ colorform.red(min=0, max=100, oninput="outputUpdate(value)") }}
+            </p>
+            <p>
+                {{ colorform.blue.label }}:
+                {{ colorform.blue(min=0, max=100, oninput="outputUpdate(value)") }}
+                <output for="blue" id="selected-blue">{{ colorform.blue.data }}</output>
+            </p>
+            <p>
+                {{ colorform.green.label }}:
+                {{ colorform.green(min=0, max=100, oninput="outputUpdate(value)") }}
+                <output for="green" id="selected-green">{{ colorform.green.data }}</output>
+            </p>
+            <p>
+                {{ colorform.submit }}
+            </p>
+        </form>
+    </body>
+</html>
