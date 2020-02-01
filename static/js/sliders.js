@@ -1,20 +1,4 @@
-function debounce(func, wait, immediate) {
-	var timeout;
-	return function() {
-		var context = this, args = arguments;
-		var later = function() {
-			timeout = null;
-			if (!immediate) func.apply(context, args);
-		};
-		var callNow = immediate && !timeout;
-		clearTimeout(timeout);
-		timeout = setTimeout(later, wait);
-		if (callNow) func.apply(context, args);
-	};
-};
-
-
-update_led_strip = debounce(
+update_led_strip = _.debounce(
     function(slider, slidertype){
         $.ajax({
             url: `/update/${slidertype}/${slider.val()}`,
@@ -22,7 +6,7 @@ update_led_strip = debounce(
         })
     },
     500,
-    false
+    options = {leading: true, maxWait: 500}
 )
 
 
