@@ -21,9 +21,10 @@ window.onload = function(){
                 slidervalue.text(slider.val());
                 update_led_strip(slider, slidertype);
             })
+            slider.trigger("input");
             let updateSliderValue = () => $.get(`/slider/${slidertype}`, function(data){
                 slider.val(data);
-                slider.trigger("input");
+                slidervalue.text(slider.val());
             });
             updateSliderValue();
             setInterval(updateSliderValue, 500)
