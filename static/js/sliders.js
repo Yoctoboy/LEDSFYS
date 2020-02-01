@@ -23,8 +23,10 @@ window.onload = function(){
             })
             slider.trigger("input");
             let updateSliderValue = () => $.get(`/slider/${slidertype}`, function(data){
+                if(data != slider.val()){
                 slider.val(data);
                 slidervalue.text(slider.val());
+                }
             });
             updateSliderValue();
             setInterval(updateSliderValue, 500)
