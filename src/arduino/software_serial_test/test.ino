@@ -13,7 +13,7 @@ void setup() {
   Serial.flush();
 }
 
-void loop() { 
+void loop() {
     correct = 0;
     SSerial.begin(speed);
     for(int i=0; i<BURST_SIZE; i++)data[i] = random(256);
@@ -30,5 +30,5 @@ void loop() {
     Serial.print("/");
     Serial.print(BURST_SIZE);
     Serial.print("\n");
-    Serial.flush();    
+    Serial.flush();
 }

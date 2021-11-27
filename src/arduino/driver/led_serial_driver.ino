@@ -36,9 +36,9 @@ void setup_command()
     // Serial.print(b1);
     // Serial.print(" ");
     // Serial.flush();
-    
+
     nLeds = b1 + 256 * b0;
-    
+
     Serial.print("nLeds : ");
     Serial.print(nLeds);
     Serial.println("");
@@ -58,7 +58,7 @@ void light_command()
         {
             leds[i][c] = Serial.read();
         }
-        
+
     }
     Serial.write(leds[0][1]);
     Serial.flush();

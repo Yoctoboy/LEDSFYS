@@ -50,7 +50,7 @@ void update_buf(int n){
   new_led = grad(n%NUM_LEDS, current_color, next_color);
   buf[n%(NUM_LEDS)] = new_led;
   buf[n%(NUM_LEDS) + NUM_LEDS] = new_led;
-  
+
 }
 CRGB bigrad(int i, CRGB start, CRGB end){
   if(i < NUM_LEDS/2){

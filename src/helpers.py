@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def rgb_to_hsv(rgb):
     input_shape = rgb.shape
     rgb = rgb.reshape(-1, 3)
@@ -12,7 +13,7 @@ def rgb_to_hsv(rgb):
     deltac = maxc - minc
     maxc[maxc == 0] = 1
     s = deltac / maxc
-    deltac[deltac == 0] = 1  # to not divide by zero (those results in any way would be overridden in next lines)
+    deltac[deltac == 0] = 1
     rc = (maxc - r) / deltac
     gc = (maxc - g) / deltac
     bc = (maxc - b) / deltac

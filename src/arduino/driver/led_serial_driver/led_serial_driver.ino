@@ -32,7 +32,7 @@ void init_display() {
       coeffr = exp(-pow(k-right,2)/(2*SIGMA2));
       leds[k] = CHSV( HUE_GREEN, 255,floor(coeffl*255)) + CHSV( HUE_ORANGE, 255,floor(coeffr*255));
     }
-    FastLED.addLeds<CHIPSET, LED_PIN, COLOR_ORDER>(leds, MAX_LED_COUNT); 
+    FastLED.addLeds<CHIPSET, LED_PIN, COLOR_ORDER>(leds, MAX_LED_COUNT);
     FastLED.show();
     left+=incr;
     right-=incr;
@@ -88,7 +88,7 @@ void setup()
   FastLED.setCorrection(Tungsten100W );
   init_display();
   Serial.begin(SERIAL_SPEED);
-} 
+}
 
 void loop()
 {
