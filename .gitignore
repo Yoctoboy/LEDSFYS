@@ -1,3 +1,6 @@
 *env
 *.pyc
 .vscode/
+
+src/frontend/build
+src/frontend/node_modules

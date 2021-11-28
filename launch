@@ -1,4 +1,0 @@
-#!/bin/sh
-
-# launch backend
-python src/main_app.py $1

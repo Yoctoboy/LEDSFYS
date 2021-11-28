@@ -10,6 +10,7 @@ class SDLColorScreen(Screen):
     name = "sdl"
 
     def __init__(self, nLeds):
+        print("ok")
         self.nLeds = nLeds
         self.RESOURCES = sdl2.ext.Resources(__file__, "resources")
         sdl2.ext.init()
