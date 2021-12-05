@@ -31,7 +31,7 @@ def update_led_strip():
     rgb_color_tuple = ImageColor.getrgb(hex_color)
     print(rgb_color_tuple)
     colorarray = np.array([rgb_color_tuple for _ in range(nLeds)])
-    screen.display(colorarray, 100 / 100.0)
+    screen.display(colorarray, 40 / 100.0)
     return "", 201
 
 
