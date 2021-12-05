@@ -5,7 +5,7 @@ import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import Box from '@mui/material/Box';
 import StaticPlainColor from './colorModeComponents/staticPlainColor.component';
-import LolComponent from './colorModeComponents/otherComponent.component';
+import StaticGradient from './colorModeComponents/StaticGradient.component';
 import { useState } from 'react';
 import Typography from "@mui/material/Typography";
 
@@ -75,7 +75,7 @@ function App() {
         </TabPanel>
         <TabPanel class="tabContent" value={selectedTab} index={1}>
           Item two
-          <LolComponent />
+          <StaticGradient />
         </TabPanel>
       </Box>
     </div>

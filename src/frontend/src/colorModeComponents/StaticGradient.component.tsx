@@ -1,4 +1,4 @@
-function LolComponent() {
+function StaticGradient() {
 
     return (
         <div className="Other">
@@ -7,4 +7,4 @@ function LolComponent() {
     );
 }
 
-export default LolComponent;
+export default StaticGradient;
