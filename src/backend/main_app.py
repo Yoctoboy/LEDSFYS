@@ -24,6 +24,8 @@ api = Api(app)
 if args.dev_mode:
     CORS(app, resources={r"/*": {"origins": "*"}})
 
+CORS(app, resources={r"/*": {"origins": "*"}})
+
 
 @app.route("/setPlainColor", methods=["POST"])
 def update_led_strip():

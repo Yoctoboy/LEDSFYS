@@ -1,14 +1,13 @@
+import * as React from 'react';
 import './App.css';
-import * as React from "react";
-import PropTypes from "prop-types";
+import { useState } from 'react';
+import PropTypes from 'prop-types';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 import StaticPlainColor from './colorModeComponents/staticPlainColor.component';
 import StaticGradient from './colorModeComponents/StaticGradient.component';
-import { useState } from 'react';
-import Typography from "@mui/material/Typography";
-
 
 // const availableModes = [
 //   { name: 'Couleur Unie', component: StaticPlainColor },
@@ -38,14 +37,13 @@ function TabPanel(props) {
 TabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired
+  value: PropTypes.number.isRequired,
 };
-
 
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`
+    'aria-controls': `simple-tabpanel-${index}`,
   };
 }
 
@@ -54,19 +52,19 @@ function App() {
 
   const handleTabChange = (event, newValue) => {
     changeSelectedTab(newValue);
-    console.log("")
-  }
+    console.log('');
+  };
 
   return (
     <div className="App">
-      <Box sx={{ width: "100%" }}>
+      <Box sx={{ width: '100%' }}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <Tabs value={selectedTab} onChange={handleTabChange} aria-label="basic tabs example">
             {/* {availableModes.forEach((mode, index) => (
               <Tab label={mode.name} {...a11yProps(index)} />
             ))} */}
-            <Tab label={"Couleur Unie"} {...a11yProps(0)} />
-            <Tab label={"LOL"} {...a11yProps(1)} />
+            <Tab label={'Couleur Unie'} {...a11yProps(0)} />
+            <Tab label={'LOL'} {...a11yProps(1)} />
           </Tabs>
         </Box>
         <TabPanel class="tabContent" value={selectedTab} index={0}>
