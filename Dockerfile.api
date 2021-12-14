@@ -1,0 +1,17 @@
+FROM python:3.9
+
+WORKDIR /app
+
+COPY arduino/ ./arduino
+COPY screens/ ./screens
+COPY helpers.py ./helpers.py
+COPY main_app.py ./main_app.py
+COPY requirements.txt ./
+
+RUN apt update
+RUN apt install -y python3-sdl2
+RUN ls -la
+RUN pip install -r ./requirements.txt
+
+EXPOSE 5000
+CMD ["python", "main_app.py", "--dev"]
