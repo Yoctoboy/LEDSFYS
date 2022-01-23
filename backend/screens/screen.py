@@ -5,6 +5,9 @@ from helpers import rgb_to_hsv, hsv_to_rgb
 
 
 class Screen(ABC):
+
+    name = "abstract"
+
     @abstractmethod
     def display(self, colorArray):
         """Display colorArray (length Screen.nLeds) on the screen

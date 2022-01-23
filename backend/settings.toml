@@ -1,0 +1,6 @@
+[default]
+screen_type = "sdl"
+nLeds = 300
+
+[production]
+screen_type = "serial"
