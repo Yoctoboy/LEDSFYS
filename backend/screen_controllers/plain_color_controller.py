@@ -5,7 +5,7 @@ from screen_controllers.abstract_screen_controller import AbstractScreenControll
 
 
 class PlainColorController(AbstractScreenController):
-    def launch_or_update(self, **data):
+    def launch_or_update(self, data):
         """Data must be of the following structure:
 
         color: string - Color we want to display, written as a hex color
@@ -13,6 +13,5 @@ class PlainColorController(AbstractScreenController):
 
         hex_color = data["color"]
         rgb_color_tuple = ImageColor.getrgb(hex_color)
-        print(rgb_color_tuple)
         colorarray = np.array([rgb_color_tuple for _ in range(self.screen.nLeds)])
         self.screen.display(colorarray)

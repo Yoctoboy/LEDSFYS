@@ -2,6 +2,12 @@ import argparse
 from flask import Flask, request
 from flask_cors import CORS
 from flask_restful import Api
+from dynaconf import settings
+
+from screens.sdl_color_screen import SDLColorScreen
+from screens.serial_driver_screen import SerialDriverScreen
+from screen_controllers.plain_color_controller import PlainColorController
+from screen_controllers.matrix_controller import MatrixController
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--dev", action="store_true", dest="dev_mode")
@@ -16,6 +22,15 @@ api = Api(app)
 
 if args.dev_mode:
     CORS(app, resources={r"/*": {"origins": "*"}})
+    screen = SDLColorScreen(settings.nLeds)
+else:
+    screen = SerialDriverScreen(settings.nLeds)
+
+
+screen_controllers = dict(
+    static=PlainColorController(screen),
+    matrix=MatrixController(screen)
+)
 
 CORS(app, resources={r"/*": {"origins": "*"}})
 
@@ -25,6 +40,11 @@ def update_led_strip():
     payload_data = request.get_json()
     assert "mode" in payload_data, "No mode specified for update, cancelling"
     assert "params" in payload_data, "No params specified for update, cancelling"
+
+    mode = payload_data["mode"]
+    params = payload_data["params"]
+
+    screen_controllers.get(mode).launch_or_update(params)
 
     return "", 201
 

@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { HexColorPicker } from 'react-colorful';
 import { useAsync } from 'react-use';
 
-import { updatePlainColor } from '../network';
+import { updateStrip } from '../network';
 
 function StaticPlainColor() {
   const [color, setColor] = useState('#000000');
 
   useAsync(async () => {
     console.log('new color', color);
-    await updatePlainColor(color);
+    await updateStrip('static', { color });
   }, [color]);
 
   return (

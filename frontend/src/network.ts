@@ -1,13 +1,13 @@
 import request from 'superagent';
 
-const backendBaseUrl = 'http://192.168.1.48:8000/';
+const backendBaseUrl = 'http://192.168.1.83:8000/';
 
-export const updatePlainColor = (hexColor = '#000000') => {
+export const updateStrip = (mode_name: string, parameters: object) => {
   console.log('');
 
   return request
-    .post(`${backendBaseUrl}setPlainColor`)
-    .send({ color: hexColor })
+    .post(`${backendBaseUrl}update`)
+    .send({ mode: mode_name, params: parameters })
     .set('Accept', 'application/json');
   //return request.get(`${backendBaseUrl}hello`).query({}).set('Accept', 'application/json')
 };
