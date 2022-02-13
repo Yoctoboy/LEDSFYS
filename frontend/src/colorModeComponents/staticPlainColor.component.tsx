@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { HexColorPicker } from 'react-colorful';
+import { AlphaPicker, HuePicker } from 'react-color';
 import { useAsync } from 'react-use';
+import './StaticPlainColor.css';
 
 import { updateStrip } from '../network';
 
@@ -14,7 +15,13 @@ function StaticPlainColor() {
 
   return (
     <div className="StaticPlainColor">
-      <HexColorPicker color={color} onChange={setColor} />
+      <div className="HuePicker">
+        <HuePicker color={color} />
+      </div>
+
+      <div className="AlphaPicker">
+        <AlphaPicker color={color} />
+      </div>
     </div>
   );
 }

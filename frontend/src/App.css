@@ -13,6 +13,12 @@
   }
 }
 
+@media only screen and (max-width: 568px) {
+  .desktop {
+    font-size: 15px;
+  }
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -28,13 +34,8 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body > #root > div {
+  height: 100vh;
 }
 
 tabContent {

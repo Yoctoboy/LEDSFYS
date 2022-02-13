@@ -74,7 +74,13 @@
       }
     ],
     "react/no-string-refs": "warn",
-    "@typescript-eslint/explicit-function-return-type": "off"
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto",
+      }
+    ]
   },
   "plugins": ["@typescript-eslint", "react-hooks", "import", "jsx-a11y", "prettier"],
   "settings": {

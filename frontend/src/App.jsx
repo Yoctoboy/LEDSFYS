@@ -64,15 +64,13 @@ function App() {
               <Tab label={mode.name} {...a11yProps(index)} />
             ))} */}
             <Tab label={'Couleur Unie'} {...a11yProps(0)} />
-            <Tab label={'LOL'} {...a11yProps(1)} />
+            <Tab label={'Gradient'} {...a11yProps(1)} />
           </Tabs>
         </Box>
         <TabPanel class="tabContent" value={selectedTab} index={0}>
-          Item one
           <StaticPlainColor />
         </TabPanel>
         <TabPanel class="tabContent" value={selectedTab} index={1}>
-          Item two
           <StaticGradient />
         </TabPanel>
       </Box>

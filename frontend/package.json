@@ -55,6 +55,7 @@
   "devDependencies": {
     "@babel/eslint-parser": "^7.16.3",
     "@types/react": "^17.0.37",
+    "@types/react-color": "^3.0.6",
     "@types/superagent": "^4.1.13",
     "eslint-config-react-app": "^7.0.0",
     "eslint-plugin-prettier": "^4.0.0",
