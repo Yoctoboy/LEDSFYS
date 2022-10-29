@@ -1,5 +1,6 @@
 import argparse
-from flask import Flask, request
+import os
+from flask import Flask, request, send_from_directory
 from flask_cors import CORS
 from flask_restful import Api
 from dynaconf import settings
@@ -16,7 +17,7 @@ parser.add_argument("--nLeds", "-n", action="store", dest="nLeds")
 args = parser.parse_args()
 
 app = Flask(
-    __name__, template_folder="../frontend/build/", static_folder="../frontend/build/"
+    __name__, template_folder="frontend/public/", static_folder="frontend/public/"
 )
 api = Api(app)
 
@@ -28,8 +29,7 @@ else:
 
 
 screen_controllers = dict(
-    static=PlainColorController(screen),
-    matrix=MatrixController(screen)
+    static=PlainColorController(screen), matrix=MatrixController(screen)
 )
 
 CORS(app, resources={r"/*": {"origins": "*"}})
@@ -49,9 +49,23 @@ def update_led_strip():
     return "", 201
 
 
-@app.route("/hello")
-def hello():
-    return "hello", 200
+@app.route("/", defaults={"path": ""})
+@app.route("/<path:path>")
+def serve(path: str):
+    print("path:", path)
+    import ipdb
+
+    ipdb.set_trace()
+    if path != "" and os.path.exists(app.static_folder + "/" + path):
+        if path.endswith(".js"):
+            print("ok")
+            return send_from_directory(
+                app.static_folder, path, kwargs={"mimetype": "text/javascript"}
+            )
+
+        return send_from_directory(app.static_folder, path)
+    else:
+        return send_from_directory(app.static_folder, "index.html")
 
 
 if __name__ == "__main__":
