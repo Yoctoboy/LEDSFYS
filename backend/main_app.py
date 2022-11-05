@@ -16,9 +16,9 @@ parser.add_argument("--nLeds", "-n", action="store", dest="nLeds")
 
 args = parser.parse_args()
 
-app = Flask(
-    __name__, template_folder="frontend/public/", static_folder="frontend/public/"
-)
+# prepare frontend in the ugliest way
+os.system("cp -r ../frontend/static .")
+app = Flask(__name__, static_folder="static")
 api = Api(app)
 
 if args.dev_mode:
@@ -52,17 +52,13 @@ def update_led_strip():
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
 def serve(path: str):
+    os.system("cp -r ../frontend/static .")
     print("path:", path)
-    import ipdb
-
-    ipdb.set_trace()
     if path != "" and os.path.exists(app.static_folder + "/" + path):
         if path.endswith(".js"):
-            print("ok")
             return send_from_directory(
-                app.static_folder, path, kwargs={"mimetype": "text/javascript"}
+                app.static_folder, path, mimetype="text/javascript"
             )
-
         return send_from_directory(app.static_folder, path)
     else:
         return send_from_directory(app.static_folder, "index.html")
