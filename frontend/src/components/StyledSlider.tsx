@@ -8,8 +8,8 @@ const boxShadow = '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.13),0 0 0 1p
 const StyledSlider = styled(Slider)(() => ({
     height: 70,
     padding: '15px 0',
-    marginTop: '80px',
-    marginBottom: '0px',
+    marginTop: '0px',
+    marginBottom: '80px',
     '& .MuiSlider-thumb': {
         height: 110,
         width: 110,

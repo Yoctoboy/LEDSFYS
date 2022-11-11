@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Grid } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 import StyledSlider, { BlueSlider, GreenSlider } from '../StyledSlider';
 import { SubmitButton } from '../SubmitButton';
 import { styled } from '@mui/material/styles';
@@ -9,7 +9,9 @@ import { ColorValues, toColorString } from './utils';
 import { RedSlider } from '../StyledSlider';
 
 interface MatrixParams {
+    trailSpeedSliderPosition?: number;
     trailSpeed: number;
+    averageTrailLengthSliderPosition: number;
     averageTrailLength: number;
 }
 
@@ -39,8 +41,10 @@ export function MatrixColorMode() {
         blue: 127,
     });
     const [matrixParams, setMatrixParams] = useState<MatrixParams>({
-        trailSpeed: 3,
-        averageTrailLength: 3,
+        trailSpeedSliderPosition: 6,
+        trailSpeed: 36,
+        averageTrailLengthSliderPosition: 8,
+        averageTrailLength: 64,
     });
     const handleRedChange = (_event: unknown, newValue: number) => {
         setColorValues({ ...colorValues, red: newValue });
@@ -52,10 +56,18 @@ export function MatrixColorMode() {
         setColorValues({ ...colorValues, blue: newValue });
     };
     const handleTrailSpeedChange = (_event: unknown, newValue: number) => {
-        setMatrixParams({ ...matrixParams, trailSpeed: newValue });
+        setMatrixParams({
+            ...matrixParams,
+            trailSpeedSliderPosition: newValue,
+            trailSpeed: newValue * newValue,
+        });
     };
     const handleAverageTrailLengthChange = (_event: unknown, newValue: number) => {
-        setMatrixParams({ ...matrixParams, averageTrailLength: newValue });
+        setMatrixParams({
+            ...matrixParams,
+            averageTrailLengthSliderPosition: newValue,
+            averageTrailLength: newValue * newValue,
+        });
     };
 
     const sliderProps = {
@@ -66,7 +78,7 @@ export function MatrixColorMode() {
 
     return (
         <Grid container spacing={0} direction="column" alignItems="center" justifyContent="center">
-            <Box sx={{ width: '78%', marginBottom: '50px' }}>
+            <Box sx={{ width: '78%', marginBottom: '50px', marginTop: '60px' }}>
                 <RedSlider value={colorValues.red} onChange={handleRedChange} {...sliderProps} />
                 <GreenSlider
                     value={colorValues.green}
@@ -74,23 +86,40 @@ export function MatrixColorMode() {
                     {...sliderProps}
                 />
                 <BlueSlider value={colorValues.blue} onChange={handleBlueChange} {...sliderProps} />
-                Speed
+                <Box
+                    display="flex"
+                    flexDirection="row"
+                    maxWidth="100%"
+                    justifyContent="space-between"
+                    sx={{ marginTop: 1, marginBottom: 0, color: '#FFFFFF', fontSize: 40 }}
+                >
+                    <div>Slow</div>
+                    <div>Fast</div>
+                </Box>
                 <StyledSlider
-                    value={matrixParams.trailSpeed}
+                    value={matrixParams.trailSpeedSliderPosition}
                     onChange={handleTrailSpeedChange}
-                    min={1}
-                    max={10}
-                    scale={(value) => value * value}
+                    min={2}
                     step={1}
+                    max={15}
+                    valueLabelDisplay="auto"
                 />
-                Length
+                <Box
+                    display="flex"
+                    flexDirection="row"
+                    maxWidth="100%"
+                    justifyContent="space-between"
+                    sx={{ marginTop: 1, marginBottom: 0, color: '#FFFFFF', fontSize: 40 }}
+                >
+                    <div>Short</div>
+                    <div>Long</div>
+                </Box>
                 <StyledSlider
-                    value={matrixParams.averageTrailLength}
+                    value={matrixParams.averageTrailLengthSliderPosition}
                     onChange={handleAverageTrailLengthChange}
                     min={2}
-                    max={20}
-                    scale={(value) => value * value}
                     step={1}
+                    max={20}
                 />
             </Box>
             <SubmitButton

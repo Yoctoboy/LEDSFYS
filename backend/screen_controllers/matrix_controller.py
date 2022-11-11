@@ -27,21 +27,26 @@ class MatrixController(AbstractScreenController):
         averageTrailLength = data["averageTrailLength"]
         rgb_color_tuple = ImageColor.getrgb(hex_color)
         isNewTrailPossible = True
+        isNewTrailDefinitive = False
         lastTrailIndex = 0
         lastTrailLength = averageTrailLength
 
         while True:
             stepStart = time.time()
-            if isNewTrailPossible and random.random() < (1 / averageTrailLength):
+            if isNewTrailDefinitive or (
+                isNewTrailPossible and random.random() < (2 / averageTrailLength)
+            ):
                 lastTrailIndex = 0
                 lastTrailLength = random.triangular(
                     averageTrailLength / 2, averageTrailLength * 1.5
                 )
                 newState = [rgb_color_tuple] + currentState[:-1]
                 isNewTrailPossible = False
+                isNewTrailDefinitive = False
             else:
                 lastTrailIndex += 1
                 isNewTrailPossible = lastTrailIndex >= (averageTrailLength / 2)
+                isNewTrailDefinitive = lastTrailIndex >= self.screen.nLeds * 0.8
                 newState = [
                     tuple(
                         [
@@ -56,4 +61,5 @@ class MatrixController(AbstractScreenController):
                 ] + currentState[:-1]
             self.screen.display(np.array(newState))
             currentState = newState
-            time.sleep(max(0, stepTime - (time.time() - stepStart)))
+            timeLeft = stepTime - (time.time() - stepStart)
+            time.sleep(max(0, timeLeft))

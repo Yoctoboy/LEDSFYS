@@ -4,7 +4,7 @@ from flask import Flask, request, send_from_directory
 from flask_cors import CORS
 from flask_restful import Api
 from dynaconf import settings
-
+from multiprocessing import Process
 from screens.sdl_color_screen import SDLColorScreen
 from screens.serial_driver_screen import SerialDriverScreen
 from screen_controllers.plain_color_controller import PlainColorController
@@ -31,8 +31,8 @@ else:
 screen_controllers = dict(
     static=PlainColorController(screen), matrix=MatrixController(screen)
 )
-
 CORS(app, resources={r"/*": {"origins": "*"}})
+currentProcess = None
 
 
 @app.route("/update", methods=["POST"])
@@ -44,7 +44,13 @@ def update_led_strip():
     mode = payload_data["mode"]
     params = payload_data["params"]
 
-    screen_controllers.get(mode).launch_or_update(params)
+    screenController = screen_controllers.get(mode)
+    global currentProcess
+    if currentProcess is not None:
+        currentProcess.kill()
+    currentProcess = Process(target=screenController.launch_or_update, args=(params,))
+    currentProcess.start()
+    currentProcess.join()
 
     return "", 201
 

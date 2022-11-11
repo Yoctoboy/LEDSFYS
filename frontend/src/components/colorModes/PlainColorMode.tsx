@@ -40,7 +40,7 @@ export function PlainColorMode() {
 
     return (
         <Grid container spacing={0} direction="column" alignItems="center" justifyContent="center">
-            <Box sx={{ width: '78%', marginBottom: '50px' }}>
+            <Box sx={{ width: '78%', marginBottom: '50px', marginTop: '60px' }}>
                 <RedSlider value={colorValues.red} onChange={handleRedChange} {...sliderProps} />
                 <GreenSlider
                     value={colorValues.green}
