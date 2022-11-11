@@ -3,10 +3,10 @@ import { Button } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 
 interface Props {
-    onClick: React.MouseEventHandler<HTMLButtonElement> | undefined;
-    backgroundColor: string;
-    backgroundHoverColor: string;
-    iconSxProps: object;
+    onClick?: React.MouseEventHandler<HTMLButtonElement>;
+    backgroundColor?: string;
+    backgroundHoverColor?: string;
+    iconSxProps?: object;
     [x: string]: unknown;
 }
 

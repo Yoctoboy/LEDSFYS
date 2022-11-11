@@ -4,12 +4,12 @@ import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import { PlainColorMode } from './components/colorModes';
+import { PlainColorMode, MatrixColorMode } from './components/colorModes';
 import { Typography } from '@mui/material';
 
 const ColorModesData = [
     { label: 'STATIC', value: '1', component: PlainColorMode, disabled: false },
-    { label: 'RAINBOW', value: '2', component: PlainColorMode, disabled: true },
+    { label: 'MATRIX', value: '2', component: MatrixColorMode, disabled: false },
 ];
 
 export default function BasicTabs() {
