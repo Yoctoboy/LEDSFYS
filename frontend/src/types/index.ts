@@ -1,1 +1,1 @@
-export * from "./RoutePaths"
+export * from './RoutePaths';

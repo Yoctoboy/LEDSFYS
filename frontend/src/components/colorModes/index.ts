@@ -1,1 +1,1 @@
-export * from './PlainColorMode'
+export * from './PlainColorMode';

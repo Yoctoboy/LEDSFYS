@@ -9,7 +9,7 @@ export const muiThemeObject: ThemeOptions = {
     palette: {
         info: { main: '#888888', light: '#EAEAEA' },
         background: {
-            default: '#282828'
+            default: '#282828',
         },
         mode: 'dark',
         text: {

@@ -4,8 +4,6 @@ import React from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { RoutePaths } from './types';
 
-
-
 const AppRoutes = (): JSX.Element => (
     <Suspense fallback={<NotFound />}>
         <BrowserRouter>

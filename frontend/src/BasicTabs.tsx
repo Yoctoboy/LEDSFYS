@@ -8,9 +8,9 @@ import { PlainColorMode } from './components/colorModes';
 import { Typography } from '@mui/material';
 
 const ColorModesData = [
-    { label: "STATIC", value: "1", component: PlainColorMode, disabled: false },
-    { label: "RAINBOW", value: "2", component: PlainColorMode, disabled: true },
-]
+    { label: 'STATIC', value: '1', component: PlainColorMode, disabled: false },
+    { label: 'RAINBOW', value: '2', component: PlainColorMode, disabled: true },
+];
 
 export default function BasicTabs() {
     const [value, setValue] = React.useState('1');
@@ -21,18 +21,41 @@ export default function BasicTabs() {
 
     return (
         <Box sx={{ width: '100%' }}>
-            <Typography fontFamily={"Roboto"}></Typography>
+            <Typography fontFamily={'Roboto'}></Typography>
             <TabContext value={value}>
-                <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                    <TabList onChange={handleChange} sx={{ backgroundColor: "#3E3E3E" }} indicatorColor="secondary" textColor='secondary'>
-                        {ColorModesData.map(mode =>
-                            <Tab key={mode.value} label={mode.label} value={mode.value} disabled={mode.disabled} />
-                        )}
+                <Box sx={{ borderBottom: 1, borderColor: 'divider', height: '160px' }}>
+                    <TabList
+                        onChange={handleChange}
+                        sx={{
+                            backgroundColor: '#3E3E3E',
+                            fontSize: '42px',
+                            height: '160px',
+                        }}
+                        indicatorColor="secondary"
+                        textColor="secondary"
+                    >
+                        {ColorModesData.map((mode) => (
+                            <Tab
+                                key={mode.value}
+                                label={mode.label}
+                                value={mode.value}
+                                disabled={mode.disabled}
+                                sx={{
+                                    height: '160px',
+                                    fontSize: '80px',
+                                    marginX: 5,
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                }}
+                            />
+                        ))}
                     </TabList>
                 </Box>
-                {ColorModesData.map(mode =>
-                    <TabPanel key={mode.value} value={mode.value}>{mode.component()}</TabPanel>
-                )}
+                {ColorModesData.map((mode) => (
+                    <TabPanel key={mode.value} value={mode.value}>
+                        {mode.component()}
+                    </TabPanel>
+                ))}
             </TabContext>
         </Box>
     );
