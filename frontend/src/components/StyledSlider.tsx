@@ -26,14 +26,4 @@ const StyledSlider = styled(Slider)(() => ({
     },
 }));
 
-export const RedSlider = styled(StyledSlider)(() => ({
-    color: '#FF0000',
-}));
-export const GreenSlider = styled(StyledSlider)(() => ({
-    color: '#00FF00',
-}));
-export const BlueSlider = styled(StyledSlider)(() => ({
-    color: '#0000FF',
-}));
-
 export default StyledSlider;

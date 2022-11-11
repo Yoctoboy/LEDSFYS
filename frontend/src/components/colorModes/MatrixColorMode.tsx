@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { Box, Grid, Typography } from '@mui/material';
-import StyledSlider, { BlueSlider, GreenSlider } from '../StyledSlider';
+import { Box, Grid } from '@mui/material';
+import StyledSlider from '../StyledSlider';
 import { SubmitButton } from '../SubmitButton';
 import { styled } from '@mui/material/styles';
 import { API_URL } from '../../constants';
 
 import { ColorValues, toColorString } from './utils';
-import { RedSlider } from '../StyledSlider';
 
 interface MatrixParams {
     trailSpeedSliderPosition?: number;
@@ -79,13 +78,24 @@ export function MatrixColorMode() {
     return (
         <Grid container spacing={0} direction="column" alignItems="center" justifyContent="center">
             <Box sx={{ width: '78%', marginBottom: '50px', marginTop: '60px' }}>
-                <RedSlider value={colorValues.red} onChange={handleRedChange} {...sliderProps} />
-                <GreenSlider
+                <StyledSlider
+                    value={colorValues.red}
+                    onChange={handleRedChange}
+                    {...sliderProps}
+                    sx={{ color: '#FF0000' }}
+                />
+                <StyledSlider
                     value={colorValues.green}
                     onChange={handleGreenChange}
                     {...sliderProps}
+                    sx={{ color: '#00FF00' }}
                 />
-                <BlueSlider value={colorValues.blue} onChange={handleBlueChange} {...sliderProps} />
+                <StyledSlider
+                    value={colorValues.blue}
+                    onChange={handleBlueChange}
+                    {...sliderProps}
+                    sx={{ color: '#0000FF' }}
+                />
                 <Box
                     display="flex"
                     flexDirection="row"
@@ -102,7 +112,7 @@ export function MatrixColorMode() {
                     min={2}
                     step={1}
                     max={15}
-                    valueLabelDisplay="auto"
+                    sx={{ color: toColorString(colorValues) }}
                 />
                 <Box
                     display="flex"
@@ -120,6 +130,7 @@ export function MatrixColorMode() {
                     min={2}
                     step={1}
                     max={20}
+                    sx={{ color: toColorString(colorValues) }}
                 />
             </Box>
             <SubmitButton

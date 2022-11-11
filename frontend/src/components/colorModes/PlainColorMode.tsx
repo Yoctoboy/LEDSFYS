@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Box, Grid } from '@mui/material';
-import { RedSlider, GreenSlider, BlueSlider } from '../StyledSlider';
+import StyledSlider from '../StyledSlider';
 import { SubmitButton } from '../SubmitButton';
 import { styled } from '@mui/material/styles';
 import { API_URL } from '../../constants';
@@ -41,13 +41,24 @@ export function PlainColorMode() {
     return (
         <Grid container spacing={0} direction="column" alignItems="center" justifyContent="center">
             <Box sx={{ width: '78%', marginBottom: '50px', marginTop: '60px' }}>
-                <RedSlider value={colorValues.red} onChange={handleRedChange} {...sliderProps} />
-                <GreenSlider
+                <StyledSlider
+                    value={colorValues.red}
+                    onChange={handleRedChange}
+                    {...sliderProps}
+                    sx={{ color: '#FF0000' }}
+                />
+                <StyledSlider
                     value={colorValues.green}
                     onChange={handleGreenChange}
                     {...sliderProps}
+                    sx={{ color: '#00FF00' }}
                 />
-                <BlueSlider value={colorValues.blue} onChange={handleBlueChange} {...sliderProps} />
+                <StyledSlider
+                    value={colorValues.blue}
+                    onChange={handleBlueChange}
+                    {...sliderProps}
+                    sx={{ color: '#0000FF' }}
+                />
             </Box>
             <SubmitButton
                 onClick={() => submitPlainColor(colorValues)}
