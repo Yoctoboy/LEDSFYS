@@ -3,18 +3,20 @@ import os
 from flask import Flask, request, send_from_directory
 from flask_cors import CORS
 from flask_restful import Api
-from dynaconf import settings
 from multiprocessing import Process
-from screens.sdl_color_screen import SDLColorScreen
-from screens.serial_driver_screen import SerialDriverScreen
 from screen_controllers.plain_color_controller import PlainColorController
 from screen_controllers.matrix_controller import MatrixController
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--dev", action="store_true", dest="dev_mode")
 parser.add_argument("--nLeds", "-n", action="store", dest="nLeds")
-
 args = parser.parse_args()
+
+if args.dev_mode:
+    from screens.sdl_color_screen import SDLColorScreen
+else:
+    from screens.serial_driver_screen import SerialDriverScreen
+
 
 # prepare frontend in the ugliest way
 os.system("cp -r ../frontend/static .")
@@ -23,9 +25,9 @@ api = Api(app)
 
 if args.dev_mode:
     CORS(app, resources={r"/*": {"origins": "*"}})
-    screen = SDLColorScreen(settings.nLeds)
+    screen = SDLColorScreen(300)
 else:
-    screen = SerialDriverScreen(settings.nLeds)
+    screen = SerialDriverScreen(300)
 
 
 screen_controllers = dict(
