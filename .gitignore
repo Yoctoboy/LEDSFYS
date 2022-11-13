@@ -2,6 +2,7 @@
 *.pyc
 .vscode/
 
+frontend/static/bundle.js.map
 **/node_modules
 containers/
 **/yarn.lock

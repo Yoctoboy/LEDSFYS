@@ -1,5 +1,6 @@
 import argparse
 import os
+import signal
 from flask import Flask, request, send_from_directory
 from flask_cors import CORS
 from flask_restful import Api
@@ -49,7 +50,7 @@ def update_led_strip():
     screenController = screen_controllers.get(mode)
     global currentProcess
     if currentProcess is not None:
-        currentProcess.kill()
+        os.kill(currentProcess.pid, signal.SIGSTOP)
     currentProcess = Process(target=screenController.launch_or_update, args=(params,))
     currentProcess.start()
     currentProcess.join()

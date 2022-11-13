@@ -11,7 +11,7 @@ class SerialDriverScreen(Screen):
         self.driver = Driver()
         self.driver.setup(nLeds)
 
-    def display(self, colorArray, brightness):
+    def display(self, colorArray, brightness=1):
         assert len(colorArray) == self.nLeds
         colorArray = self.apply_brightness(colorArray, brightness)
         self.driver.light(colorArray)

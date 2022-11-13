@@ -39,7 +39,7 @@ class Driver(object):
         self.serial.flush()
         if self.debug:
             print("Light command sent")
-        flat_data = [item for sublist in data for item in sublist]
+        flat_data = [int(item) for sublist in data for item in sublist]
         d = list(flat_data)
         self.serial.read()
         self.serial.write(pack("<{}B".format(3 * self.nLeds), *d))
