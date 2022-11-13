@@ -79441,7 +79441,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` : (0,
   }
 
   // src/constants.ts
-  var API_URL = "http://192.168.1.48:8000";
+  var API_URL = "http://192.168.1.62:8000";
 
   // src/components/colorModes/utils.ts
   var toColorString = (colorValues) => {
