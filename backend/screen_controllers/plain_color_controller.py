@@ -1,4 +1,3 @@
-import numpy as np
 from PIL import ImageColor
 
 from screen_controllers.abstract_screen_controller import AbstractScreenController
@@ -13,5 +12,5 @@ class PlainColorController(AbstractScreenController):
 
         hex_color = data["color"]
         rgb_color_tuple = ImageColor.getrgb(hex_color)
-        colorarray = np.array([rgb_color_tuple for _ in range(self.screen.nLeds)])
+        colorarray = [rgb_color_tuple for _ in range(self.screen.nLeds)]
         self.screen.display(colorarray)

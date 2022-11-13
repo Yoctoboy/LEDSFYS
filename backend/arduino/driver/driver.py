@@ -1,7 +1,6 @@
 import serial
 from struct import pack
 from enum import Enum
-import numpy as np
 import time
 
 
@@ -34,13 +33,14 @@ class Driver(object):
         """[summary]
 
         Args:
-            data ([np array]): shape: nLeds,3
+            data (python array): shape: nLeds,3
         """
         self.serial.write(pack("<B", Command.LIGHT.value))
         self.serial.flush()
         if self.debug:
             print("Light command sent")
-        d = list(data.flatten())
+        flat_data = [item for sublist in data for item in sublist]
+        d = list(flat_data)
         self.serial.read()
         self.serial.write(pack("<{}B".format(3 * self.nLeds), *d))
         self.serial.flush()
@@ -50,19 +50,19 @@ class Driver(object):
         self.serial.read()
 
 
-if __name__ == "__main__":
-    d = Driver()
-    nled = 300
-    d.setup(nled)
-    i = 0
-    print("Setup complete.")
-    N = 500
-    start = time.time()
-    n = 0
-    while i < N:
-        a = np.array([[255, (i % 2) * 255, 255]] * nled)
-        d.light(a)
-        i += 1
-    end = time.time()
-    timeperframe = (end - start) / N
-    print("Average time per frame: {} s fps {}".format(timeperframe, 1 / timeperframe))
+# if __name__ == "__main__":
+#     d = Driver()
+#     nled = 300
+#     d.setup(nled)
+#     i = 0
+#     print("Setup complete.")
+#     N = 500
+#     start = time.time()
+#     n = 0
+#     while i < N:
+#         a = np.array([[255, (i % 2) * 255, 255]] * nled)
+#         d.light(a)
+#         i += 1
+#     end = time.time()
+#     timeperframe = (end - start) / N
+#     print("Average time per frame: {} s fps {}".format(timeperframe, 1 / timeperframe))
