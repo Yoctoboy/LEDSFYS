@@ -2,9 +2,6 @@
 *.pyc
 .vscode/
 
-frontend/build
 **/node_modules
 containers/
 **/yarn.lock
-
-bundle.js*
