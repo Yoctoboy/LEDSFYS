@@ -18,7 +18,7 @@ const submitMatrixColor = async (
     colorValues: ColorValues,
     matrixParams: MatrixParams
 ): Promise<void> => {
-    await fetch(API_URL + '/update', {
+    await fetch(API_URL + 'update', {
         headers: {
             'Content-Type': 'application/json',
         },

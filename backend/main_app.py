@@ -1,6 +1,5 @@
 import argparse
-import os
-from flask import Flask, request, send_from_directory
+from flask import Flask, request
 from flask_cors import CORS
 from flask_restful import Api
 from multiprocessing import Process
@@ -19,8 +18,7 @@ else:
 
 
 # prepare frontend in the ugliest way
-os.system("cp -r ../frontend/static .")
-app = Flask(__name__, static_folder="static")
+app = Flask(__name__)
 api = Api(app)
 
 if args.dev_mode:
@@ -55,21 +53,6 @@ def update_led_strip():
     currentProcess.join()
 
     return "", 201
-
-
-@app.route("/", defaults={"path": ""})
-@app.route("/<path:path>")
-def serve(path: str):
-    os.system("cp -r ../frontend/static .")
-    print("path:", path)
-    if path != "" and os.path.exists(app.static_folder + "/" + path):
-        if path.endswith(".js"):
-            return send_from_directory(
-                app.static_folder, path, mimetype="text/javascript"
-            )
-        return send_from_directory(app.static_folder, path)
-    else:
-        return send_from_directory(app.static_folder, "index.html")
 
 
 if __name__ == "__main__":

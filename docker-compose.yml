@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+    ledfys-frontend:
+        image: ledsfys-frontend:latest
+        environment:
+            PORT: 8080
+        ports:
+            - 8080:8080

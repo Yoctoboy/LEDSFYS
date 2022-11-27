@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import { Box, Grid } from '@mui/material';
 import StyledSlider from '../StyledSlider';
 import { SubmitButton } from '../SubmitButton';
-import { styled } from '@mui/material/styles';
 import { API_URL } from '../../constants';
 import { ColorValues, toColorString } from './utils';
 
 const submitPlainColor = async (colorValues: ColorValues): Promise<void> => {
-    await fetch(API_URL + '/update', {
+    await fetch(API_URL + 'update', {
         headers: {
             'Content-Type': 'application/json',
         },
