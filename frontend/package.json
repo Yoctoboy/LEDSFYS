@@ -5,8 +5,9 @@
     "main": "index.js",
     "scripts": {
         "test": "test",
-        "build": "esbuild src/app.tsx --bundle --sourcemap --outfile=static/bundle.js",
-        "autobuild": "yarn build && onchange . -e 'static' -- yarn build"
+        "build": "esbuild src/app.tsx --bundle --outfile=static/bundle.js",
+        "autobuild": "yarn build && onchange . -e 'static' -- yarn build",
+        "serve": "yarn build && http-server ./static"
     },
     "author": "",
     "license": "ISC",
@@ -33,6 +34,7 @@
         "eslint-plugin-react": "^7.31.10",
         "eslint-plugin-react-hooks": "^4.6.0",
         "eslint-plugin-risxss": "^2.1.0",
+        "http-server": "^14.1.1",
         "i18n": "^0.15.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
