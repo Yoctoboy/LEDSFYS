@@ -21,6 +21,7 @@ else:
 
 
 # prepare frontend in the ugliest way
+os.system("cp -r ../frontend/static .")
 app = Flask(__name__)
 api = Api(app)
 
@@ -63,7 +64,10 @@ def update_led_strip():
     screenController = screen_controllers.get(mode)
     global currentProcess
     if currentProcess is not None:
-        os.kill(currentProcess.pid, signal.SIGSTOP)
+        try:
+            os.kill(currentProcess.pid, signal.SIGSTOP)
+        except:
+            pass
     currentProcess = Process(target=screenController.launch_or_update, args=(params,))
     currentProcess.start()
     currentProcess.join()
