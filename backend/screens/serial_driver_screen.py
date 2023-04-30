@@ -1,5 +1,4 @@
 from .screen import Screen
-import numpy as np
 from arduino.driver.driver import Driver
 
 
@@ -12,10 +11,10 @@ class SerialDriverScreen(Screen):
         self.driver = Driver()
         self.driver.setup(nLeds)
 
-    def display(self, colorArray, brightness):
+    def display(self, colorArray, brightness=1):
         assert len(colorArray) == self.nLeds
         colorArray = self.apply_brightness(colorArray, brightness)
-        self.driver.light(np.array(colorArray))
+        self.driver.light(colorArray)
 
     def zero(self):
-        self.driver.light(np.array([[0, 0, 0] for _ in range(self.nLeds)]))
+        self.driver.light([[0, 0, 0] for _ in range(self.nLeds)])

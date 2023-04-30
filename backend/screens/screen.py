@@ -1,8 +1,5 @@
 from abc import ABC, abstractmethod
 
-import numpy as np
-from helpers import rgb_to_hsv, hsv_to_rgb
-
 
 class Screen(ABC):
 
@@ -17,7 +14,7 @@ class Screen(ABC):
         """
         pass
 
-    def apply_brightness(self, colorArray, brightness):
+    def apply_brightness(self, colorArray, brightness=1):
         """Apply brightness modification to the colors
 
         Args:
@@ -26,7 +23,4 @@ class Screen(ABC):
         Returns:
             ndarray: output array with colors modified with brightness
         """
-        hsv = rgb_to_hsv(colorArray)
-        hsv[:, 2] *= brightness if brightness is not None else self.brightness
-        rgb = hsv_to_rgb(hsv)
-        return rgb.astype(np.int32)
+        return [[max(0, min(x * brightness, 255)) for x in led] for led in colorArray]

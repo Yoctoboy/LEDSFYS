@@ -2,7 +2,6 @@ import sdl2
 import sdl2.ext
 from screens.screen import Screen
 from multiprocessing import Process, Array as mpArray
-import numpy as np
 
 
 class SDLColorScreen(Screen):
@@ -27,11 +26,10 @@ class SDLColorScreen(Screen):
     def display(self, colorArray, brightness=1):
         assert len(colorArray) == self.nLeds
         colorArray = self.apply_brightness(colorArray, brightness)
-        flat = np.array(colorArray).flatten()
         for i in range(self.nLeds):
-            self.LEDS[3 * i] = flat[3 * i]
-            self.LEDS[3 * i + 1] = flat[3 * i + 1]
-            self.LEDS[3 * i + 2] = flat[3 * i + 2]
+            self.LEDS[3 * i] = colorArray[i][0]
+            self.LEDS[3 * i + 1] = colorArray[i][1]
+            self.LEDS[3 * i + 2] = colorArray[i][2]
 
     def _renderFunction(self):
         self.window = sdl2.ext.Window(

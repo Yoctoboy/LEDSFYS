@@ -23,7 +23,6 @@ matplotlib-inline
 mccabe
 mypy-extensions
 nodeenv
-numpy
 parso
 pathspec
 pexpect

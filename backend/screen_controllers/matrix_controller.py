@@ -1,7 +1,6 @@
 from PIL import ImageColor
 import random
 import time
-import numpy as np
 from screens.screen import Screen
 from screen_controllers.abstract_screen_controller import AbstractScreenController
 
@@ -59,7 +58,7 @@ class MatrixController(AbstractScreenController):
                         ]
                     )
                 ] + currentState[:-1]
-            self.screen.display(np.array(newState))
+            self.screen.display(newState)
             currentState = newState
             timeLeft = stepTime - (time.time() - stepStart)
             time.sleep(max(0, timeLeft))
