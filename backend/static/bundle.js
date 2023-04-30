@@ -79441,7 +79441,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` : (0,
   }
 
   // src/constants.ts
-  var API_URL = "http://192.168.1.37:8000";
+  var API_URL = "http://192.168.1.62:8000";
 
   // src/components/colorModes/utils.ts
   var toColorString = (colorValues) => {
@@ -79455,10 +79455,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` : (0,
         "Content-Type": "application/json"
       },
       method: "POST",
-      body: JSON.stringify({
-        mode: "static",
-        params: { color: toColorString(colorValues) }
-      })
+      body: JSON.stringify({ mode: "static", params: { color: toColorString(colorValues) } })
     });
   });
   function PlainColorMode() {
@@ -79534,7 +79531,8 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` : (0,
       blue: 127
     });
     const [matrixParams, setMatrixParams] = (0, import_react9.useState)({
-      trailSpeed: 6,
+      trailSpeedSliderPosition: 6,
+      trailSpeed: 36,
       averageTrailLengthSliderPosition: 8,
       averageTrailLength: 64
     });
@@ -79549,7 +79547,8 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` : (0,
     };
     const handleTrailSpeedChange = (_event, newValue) => {
       setMatrixParams(__spreadProps(__spreadValues({}, matrixParams), {
-        trailSpeed: newValue
+        trailSpeedSliderPosition: newValue,
+        trailSpeed: newValue * newValue
       }));
     };
     const handleAverageTrailLengthChange = (_event, newValue) => {
@@ -79597,7 +79596,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` : (0,
       onChange: handleTrailSpeedChange,
       min: 2,
       step: 1,
-      max: 20,
+      max: 15,
       sx: { color: toColorString(colorValues) }
     }), /* @__PURE__ */ import_react9.default.createElement(Box_default, {
       display: "flex",
@@ -79610,7 +79609,7 @@ See https://mui.com/r/migration-v4/#mui-material-styles for more details.` : (0,
       onChange: handleAverageTrailLengthChange,
       min: 2,
       step: 1,
-      max: 12,
+      max: 20,
       sx: { color: toColorString(colorValues) }
     })), /* @__PURE__ */ import_react9.default.createElement(SubmitButton, {
       onClick: () => submitMatrixColor(colorValues, matrixParams),

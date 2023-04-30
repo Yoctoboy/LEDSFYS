@@ -2,7 +2,7 @@ import argparse
 from flask import Flask, request
 import os
 import signal
-from flask import Flask, request
+from flask import Flask, request, send_from_directory
 from flask_cors import CORS
 from flask_restful import Api
 from multiprocessing import Process
@@ -37,6 +37,19 @@ screen_controllers = dict(
 CORS(app, resources={r"/*": {"origins": "*"}})
 currentProcess = None
 
+@app.route("/", defaults={"path": ""})
+@app.route("/<path:path>")
+def serve(path: str):
+    os.system("cp -r ../frontend/static .")
+    print("path:", path)
+    if path != "" and os.path.exists(app.static_folder + "/" + path):
+        if path.endswith(".js"):
+            return send_from_directory(
+                app.static_folder, path, mimetype="text/javascript"
+            )
+        return send_from_directory(app.static_folder, path)
+    else:
+        return send_from_directory(app.static_folder, "index.html")
 
 @app.route("/update", methods=["POST"])
 def update_led_strip():
